@@ -1,5 +1,5 @@
 '''
-Insertion sort: Pairwise swaps
+Insertion sort: Pairwise swaps - O(n^2)
 '''
 def capture_inputs():
     raw_input = input()
