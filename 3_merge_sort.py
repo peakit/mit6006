@@ -1,5 +1,5 @@
 '''
-Merge sort -O (n logn)
+Merge sort - O(n logn)
 '''
 
 
