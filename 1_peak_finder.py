@@ -1,9 +1,9 @@
-'''
+"""
 Finding peak in a 1D array. A peak is 
 an element in the array such that element
 on the left and right of it is smaller
 i.e. a[i] > a[i-1] and a[i] > a[i+1]
-'''
+"""
 
 
 def find_peak(start, end, elements):

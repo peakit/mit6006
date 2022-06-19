@@ -1,8 +1,8 @@
-'''
+"""
 Improvised insertion sort which finds the right position where to
 insert an element in a sorted array by using Binary search.
 Time complexity comes down from O(n^2) to O(n logn)
-'''
+"""
 
 
 def capture_inputs():
@@ -11,9 +11,9 @@ def capture_inputs():
 
 
 def binary_search(start, end, arr, ele):
-    '''
+    """
     Searches the position of given ele in arr's start to end index
-    '''
+    """
     if start == end:
         if ele > arr[start]:
             return start + 1

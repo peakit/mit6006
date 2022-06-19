@@ -1,6 +1,6 @@
-'''
+"""
 Finds peak element in a 2D array
-'''
+"""
 
 
 def capture_inputs(matrix):

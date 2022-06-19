@@ -1,8 +1,8 @@
-'''
+"""
 Given two documents find the document distance between them. 
 If two documents are similar then document distance will be 
 less else document distance would be more.
-'''
+"""
 import math
 
 

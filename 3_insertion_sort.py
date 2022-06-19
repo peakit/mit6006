@@ -1,6 +1,6 @@
-'''
+"""
 Insertion sort: Pairwise swaps - O(n^2)
-'''
+"""
 def capture_inputs():
     raw_input = input()
     return [int(w) for w in raw_input.split()]

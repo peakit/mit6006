@@ -1,19 +1,19 @@
-'''
+"""
 Heap sort: 
 1. Build a heap out of given elements by iteratively
 moving largest to parent node
 2. Keep extracting maximum i.e. root node and 
 re-heapfiying the tree starting from its root node
-'''
+"""
 
 
 def max_heapify(arr, i):
-    '''
+    """
     Bottom-up keep moving the largest of the sibling to Root of the sub-tree.
     This needs to be done starting from first non-leaf node downto root
     node of the tree.
     O(logn)
-    '''
+    """
     # max_heapify is deemed complete if i > both its children
     # swap with largest of the children
     left_exists = False
@@ -56,9 +56,9 @@ def max_heapify(arr, i):
 
 
 def build_heap(arr):
-    '''
+    """
     O(n logn)
-    '''
+    """
     n = len(arr)
     for i in range(n//2 - 1, -1, -1):
         max_heapify(arr, i)
@@ -70,12 +70,12 @@ def capture_inputs():
 
 
 def heap_sort(arr):
-    '''
+    """
     Root has the largest element in a max-heap so
     you swap root with last element of the array
     and return the last element and then max-heapify
     the new root and shrink the array by 1
-    '''
+    """
     # swap root with last element
     largest = arr[0]
     arr[0] = arr[len(arr) - 1]

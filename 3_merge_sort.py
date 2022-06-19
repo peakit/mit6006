@@ -1,12 +1,12 @@
-'''
+"""
 Merge sort - O(n logn)
-'''
+"""
 
 
 def merge(m1, m2):
-    '''
+    """
     Merges two sorted lists
-    '''
+    """
     i = 0
     j = 0
     output = []
