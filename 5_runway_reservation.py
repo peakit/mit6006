@@ -78,10 +78,16 @@ class Tree:
             return self.find_min(node.right)
         
         curr = node
-        while curr.parent is not None \
-            and curr.parent.left == curr:
+        while curr.parent is not None and \
+                curr.parent.left != curr:
             curr = curr.parent
-        return curr
+
+        if curr.parent is None:
+            return None
+        elif curr.parent.left == curr:
+            return curr.parent
+        else:
+            return curr
 
 
     def delete(self, node):
@@ -105,10 +111,12 @@ class Tree:
             node.key = succ.key
             if succ.parent.left == succ:
                 succ.parent.left = succ.left
-                succ.left.parent = succ.parent
+                if succ.left is not None:
+                    succ.left.parent = succ.parent
             elif succ.parent.right == succ:
                 succ.parent.right = succ.right
-                succ.right.parent = succ.parent
+                if succ.right is not None:
+                    succ.right.parent = succ.parent
             del succ
         return True, None
     

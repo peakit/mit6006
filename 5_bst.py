@@ -89,11 +89,52 @@ class Tree:
                 # basically asking for successor of a root node
                 # and when the root has no right subtree
                 return None
-            
+
             while found.parent is not None and \
                     found != found.parent.left:
                 found = found.parent
-            return found
+            
+            if found.parent is None:
+                return None
+            elif found == found.parent.left:
+                return found.parent
+            else:
+                return found
+
+    def predecessor(self, val):
+        """
+        Finds the next smaller node compared to the given value
+
+        1. If there is left subtree then the max from that is the predecessor
+        2. If there is no left subtree then go to parent till a node is there
+            which is right child of its parent
+        """
+        found = self.search(val)
+        if found is None:
+            return None
+
+        if found.left is not None:
+            curr = found.left
+            prev = found
+            while curr is not None:
+                prev = curr
+                curr = curr.right
+            return prev
+        else:
+            curr = found
+            if curr.parent is None:
+                return None
+
+            while curr.parent is not None and \
+                    curr != curr.parent.right:
+                curr = curr.parent
+            
+            if curr.parent is None:
+                return None
+            elif curr.parent.right == curr:
+                return curr.parent
+            else:
+                return curr
 
     def delete(self, val):
         node = self.search(val)
@@ -120,11 +161,13 @@ class Tree:
             node.key = succ.key
             if succ.parent.left == succ:
                 succ.parent.left = succ.right
-                succ.right.parent = succ.parent
+                if succ.right is not None:
+                    succ.right.parent = succ.parent
                 del succ
             elif succ.parent.right == succ:
                 succ.parent.right = succ.right
-                succ.right.parent = succ.parent
+                if succ.right is not None:
+                    succ.right.parent = succ.parent
                 del succ
 
 
@@ -185,6 +228,9 @@ def main():
 
     succ = tree.successor(val)
     print("Successor: ", succ)
+
+    pred = tree.predecessor(val)
+    print("Predecessor: ", pred)
 
     tree.delete(val)
     print("\nInorder traversal after deleting node with value ", val)
