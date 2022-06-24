@@ -91,23 +91,23 @@ class AVL:
         """
         orn = self.find_orientation(node)
         if orn == "RR":
-            print("Rotate-Left ", node.key)
+            print("=>Rotate-Left ", node.key)
             self.rotate_left(node)
         elif orn == "LL":
-            print("Rotate-Right ", node.key)
+            print("=>Rotate-Right ", node.key)
             self.rotate_right(node)
         elif orn == "RL":
             # case of wedge
             # rotate the "right child" to left to bring linear
             # orientation of RR
-            print("Rotate-Right ", node.right.key,
+            print("=>Rotate-Right ", node.right.key,
                   " and then Rotate-Left ", node.key)
             self.rotate_right(node.right)
             # followed by normal left rotation of node
             self.rotate_left(node)
         else:
             # LR - similar to above wedge case
-            print("Rotate-Left ", node.left.key,
+            print("=>Rotate-Left ", node.left.key,
                   " and then Rotate-Right ", node.key)
             self.rotate_left(node.left)
             self.rotate_right(node)
@@ -248,7 +248,7 @@ class AVL:
         - Rebalance tree from bottom to top seen nodes 
             of the tree
         """
-        print("Inserting ", val, " in the AVL tree..")
+        print("Inserting", val, "in the AVL tree..")
         if self.root is None:
             newNode = Node(val, None, None, None)
             self.root = newNode
@@ -343,7 +343,7 @@ class AVL:
             return None
 
         if node.right is not None:
-            return self.find_max(node.right)
+            return self.min(node.right)
         else:
             while node.parent is not None and \
                     node.parent.left != node:
@@ -358,7 +358,7 @@ class AVL:
         """
         Returns the next smaller node compared to the given node.
 
-        If left subtree exists then find_max(left_subtree).
+        If left subtree exists then max(left_subtree).
         Else keep following parent pointers till you find a node
         which has right child or else predecessor is None
         """
@@ -366,7 +366,7 @@ class AVL:
             return None
 
         if node.left is not None:
-            return self.find_max(node.left)
+            return self.max(node.left)
         else:
             while node.parent is not None and \
                     node.parent.right != node:
@@ -395,6 +395,7 @@ class AVL:
             # the node to be deleted does not exist
             return
 
+        print("Deleting", node.key, "from the AVL tree..")
         parent = node.parent
         if node.left is None and \
                 node.right is None:
@@ -416,11 +417,13 @@ class AVL:
                     node.right is not None:
                 node.key = node.right.key
                 node.right.parent = node.parent
+                node.right = node.right.right
                 del node
             elif node.left is not None and \
                     node.right is None:
                 node.key = node.left.key
                 node.left.parent = node.parent
+                node.left = node.left.left
                 del node
             else:
                 # node to be deleted has two children
@@ -453,6 +456,7 @@ class AVL:
         """
         Prints inorder traversal of the tree
         """
+        print("\nInorder traversal: ", end="")
         AVL._rec_inorder_traversal(self.root)
 
 
@@ -467,6 +471,13 @@ def main():
     tree = AVL(None)
     for a in arr:
         tree.insert(a)
+    tree.inorder_traversal()
+
+    print("\nEnter the value to be searched=", end="")
+    val = int(input())
+    node = tree.search(val)
+    if node is not None:
+        tree.delete(node)
     tree.inorder_traversal()
 
 
