@@ -37,7 +37,8 @@ def counting_sort(arr):
 
     # step 5: Go over the original array and keep
     # looking for its right index in the above counted
-    # array
+    # array. Increment the existing index value so that
+    # next duplicate occurrence finds the next slot
     output = [None]*len(arr)
     for a in arr:
         idx = counted[a - minn]
