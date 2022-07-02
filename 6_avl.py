@@ -217,8 +217,8 @@ class AVL:
 
         # step 3: Handle pointers of any "shifting node" L->R
         if newRoot.right is not None:
-            node.right.left = newRoot.right
-            newRoot.right.parent = newRoot
+            node.left = newRoot.right
+            node.left.parent = node
         else:
             # else, now the node won't have
             # left child, let's clear the ptr
@@ -438,7 +438,7 @@ class AVL:
         bal_status, unbal_node = self.is_balanced(parent)
         if not bal_status:
             self.rotate(unbal_node)
-        self.recalculate_height(self.root)
+            self.recalculate_height(self.root)
 
     @staticmethod
     def _rec_inorder_traversal(node):
