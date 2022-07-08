@@ -5,6 +5,8 @@ Relies on:
 - using a sliding window
 - calculating hash of each |s| width substring
 - if the hash match then only match the string
+
+This uses in-built hashing function to calculate the hash
 """
 
 
